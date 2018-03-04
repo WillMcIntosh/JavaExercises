@@ -8,25 +8,11 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static GroceryList groceryList = new GroceryList();
 
-
     public static void main(String[] args) {
-//        GroceryList groceries = new GroceryList();
-//        groceries.addGroceryItem("peas");
-//        groceries.addGroceryItem("mayo");
-//        groceries.addGroceryItem("bread");
-//
-//        groceries.printGroceryList();
-//        System.out.println("===========");
-//
-//        groceries.modifyGroceryItem(2, "pop tarts");
-//        groceries.printGroceryList();
-//
-//        String derp = groceries.findItem("pop tarts");
-//        System.out.println(derp);
-
         boolean quit = false;
         int choice = 0;
         printInstructions();
+        
         while(!quit) {
             System.out.println("Enter your choice: ");
             choice = scanner.nextInt();
@@ -96,17 +82,5 @@ public class Main {
         } else {
             System.out.println(searchItem + " is not found in the shopping list.");
         }
-
-    }
-
-    // other ways of processing an ArrayList
-    public static void processArrayList() {
-        ArrayList<String> newArray = new ArrayList<>();
-        newArray.addAll(groceryList.getGroceryList());
-
-        ArrayList<String> nextArray = new ArrayList<>(groceryList.getGroceryList());
-
-        String[] myArray = new String[groceryList.getGroceryList().size()];
-        myArray = groceryList.getGroceryList().toArray(myArray);
     }
 }
