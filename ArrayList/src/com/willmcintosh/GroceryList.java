@@ -7,6 +7,10 @@ import java.util.ArrayList;
 public class GroceryList {
     private ArrayList<String> groceryList = new ArrayList<>();
 
+    public ArrayList<String> getGroceryList() {
+        return groceryList;
+    }
+
     public void printGroceryList() {
         System.out.println("You have " + groceryList.size() + " items in your list");
         for (int i = 0; i < groceryList.size(); i++) {
@@ -18,25 +22,43 @@ public class GroceryList {
         groceryList.add(item);
     }
 
-    public void removeGroceryItem(int position) {
-        String theItem = groceryList.get((position));
-        groceryList.remove((position));
-        System.out.println(theItem + " has been removed.");
-    }
-
-    public void modifyGroceryItem(int position, String newItem) {
-        groceryList.set(position, newItem);
-        System.out.println("Grocery item " + (position + 1) + " has been modified.");
-    }
-
-    public String findItem(String searchItem) {
-//        String lowercaseSearchItem = searchItem.toLowerCase();
-//        boolean exists = groceryList.contains(lowercaseSearchItem);
-        int position = groceryList.indexOf(searchItem);
+    public void removeGroceryItem(String item) {
+        int position = findItem(item);
         if (position >= 0) {
-            return groceryList.get(position);
+            removeGroceryItem(position);
+            System.out.println(item + " has been removed.");
+        } else if (position < 0) {
+            System.out.println("Item " + item + " not found.");
         }
-        return null;
+    }
 
+    private void removeGroceryItem(int position) {
+        groceryList.remove((position));
+    }
+
+    public void modifyGroceryItem(String currentItem, String newItem) {
+        int position = findItem(currentItem);
+        if (position >= 0) {
+            modifyGroceryItem(position, newItem);
+            System.out.println("Grocery item " + (position + 1) + " has been modified.");
+        }
+    }
+
+    // internal method is private so that users only deal with String version
+    private void modifyGroceryItem(int position, String newItem) {
+        groceryList.set(position, newItem);
+    }
+
+    public boolean onFile(String searchItem) {
+        int position = findItem(searchItem);
+        if (position >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    // will return -1 if item is not in groceryList
+    private int findItem(String searchItem) {
+        return groceryList.indexOf(searchItem);
     }
 }
