@@ -12,7 +12,7 @@ public class Main {
         boolean quit = false;
         int choice = 0;
         printInstructions();
-        
+
         while(!quit) {
             System.out.println("Enter your choice: ");
             choice = scanner.nextInt();

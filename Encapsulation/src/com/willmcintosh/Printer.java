@@ -29,9 +29,11 @@ public class Printer {
     }
 
     public void printPages(int pages) {
+        // should add check for duplex mode for # of pages
         // check that pages is a positive number
         if (pages > 0) {
             // every 10 pages takes 1 % toner
+            // could do (pages/10) + (pages%10) to get exact number
             int newToner = this.getTonerLevel() - (pages/10);
 
             if (newToner >= 0) {
